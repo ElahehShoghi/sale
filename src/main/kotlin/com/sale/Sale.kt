@@ -8,4 +8,10 @@ class Sale {
         else -> "Error: barcode not found"
     }
 
+    fun total(barcode1: String, barcode2: String): String {
+        return "$${
+            getPriceByBarcode(barcode1).replace("$", "").toDouble() + getPriceByBarcode(barcode2).replace("$", "").toDouble()
+        }"
+    }
+
 }
