@@ -1,5 +1,6 @@
 package com.sale
 
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -22,5 +23,10 @@ class SaleTest {
     @MethodSource("barcodeArguments")
     fun `should display correct price for a barcode`(barcode: String, expectedPrice: String) {
         assertEquals(expectedPrice, sale.getPriceByBarcode(barcode))
+    }
+
+    @Test
+    fun `should display the sum of the scanned product prices`() {
+        assertEquals("$19.75", sale.total("12345", "23456"))
     }
 }
