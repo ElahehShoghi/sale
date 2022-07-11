@@ -14,6 +14,7 @@ class SaleTest {
             Arguments.of("12345", "$7.25"),
             Arguments.of("23456", "$12.50"),
             Arguments.of("99999", "Error: barcode not found"),
+            Arguments.of("", "Error: empty barcode"),
         )
     }
 
