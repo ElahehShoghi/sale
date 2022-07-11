@@ -1,17 +1,24 @@
 package com.sale
 
-import org.junit.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 import kotlin.test.assertEquals
 
 class SaleTest {
+    private val sale = Sale()
 
-    @Test
-    fun `should display price $7,25 for barcode 12345`() {
-        assertEquals("$7.25", Sale().getPriceByBarcode("12345"))
+    companion object {
+        @JvmStatic
+        fun barcodeArguments() = listOf(
+            Arguments.of("12345", "$7.25"),
+            Arguments.of("23456", "$12.50"),
+        )
     }
 
-    @Test
-    fun `should display price $12,50 for barcode 23456`() {
-        assertEquals("$12.50", Sale().getPriceByBarcode("23456"))
+    @ParameterizedTest
+    @MethodSource("barcodeArguments")
+    fun `should display correct price for a barcode`(barcode: String, expectedPrice: String) {
+        assertEquals(expectedPrice, sale.getPriceByBarcode(barcode))
     }
 }

@@ -2,9 +2,7 @@ package com.sale
 
 class Sale {
     fun getPriceByBarcode(barcode: String): String {
-        if (barcode == "12345")
-            return "$7.25"
-        return "$12.50"
+        return if (barcode == "12345") "$7.25" else "$12.50"
     }
 
 }
